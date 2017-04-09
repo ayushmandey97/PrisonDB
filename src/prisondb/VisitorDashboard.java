@@ -21,7 +21,9 @@ public class VisitorDashboard extends javax.swing.JFrame {
         jLabel1.setVisible(false);
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
+
         getSQLData();
+
     }
     void getSQLData(){
         try {
