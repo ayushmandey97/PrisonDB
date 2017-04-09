@@ -18,6 +18,17 @@ public class LoginPage extends javax.swing.JFrame {
         initComponents();
         jPanel1.setEnabled(false);
         jPanel2.setEnabled(false);
+        //visitor login
+        jTextField2.setEnabled(false);
+        jPasswordField2.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton8.setEnabled(false);
+        
+        //warden login elements
+        jTextField1.setEnabled(false);
+        jPasswordField1.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton6.setEnabled(false);
     }
 
     /**
