@@ -8,13 +8,32 @@ package prisondb;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ayushmandey
  */
 public class RegisterPage extends javax.swing.JFrame {
 
+    //dheeraj DB variables
+    String wName;
+    String wID;
+    String wEmail;
+    String wPhone;
+    String wPass;
+    String wBNum;
+    String wHint;
+    String vName;
+    String vID;
+    String pID;
+    String relation;
+    String vPhone;
+    String vPass;
+    String vAdd;
+    String vHint;
     /**
      * Creates new form RegisterPage
      */
@@ -30,7 +49,6 @@ public class RegisterPage extends javax.swing.JFrame {
         //disabling register warden elements
             jTextField6.setEnabled(false);
             jTextField7.setEnabled(false);
-            jTextField8.setEnabled(false);
             jTextField9.setEnabled(false);
             jTextField10.setEnabled(false);
             jTextField14.setEnabled(false);
@@ -40,7 +58,6 @@ public class RegisterPage extends javax.swing.JFrame {
          //disabling register visitor elements
          jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
-        jTextField3.setEnabled(false);
         jTextField4.setEnabled(false);
         jTextField5.setEnabled(false);
         jTextField11.setEnabled(false);
@@ -48,6 +65,9 @@ public class RegisterPage extends javax.swing.JFrame {
         jTextField13.setEnabled(false);
         jPasswordField1.setEnabled(false);
         jPasswordField2.setEnabled(false);
+        
+        jButton6.setEnabled(false);
+        jButton2.setEnabled(false);
         
      
         }
@@ -70,13 +90,11 @@ public class RegisterPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jTextField4 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -94,13 +112,11 @@ public class RegisterPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jPasswordField3 = new javax.swing.JPasswordField();
         jPasswordField4 = new javax.swing.JPasswordField();
         jTextField10 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -129,9 +145,6 @@ public class RegisterPage extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel3.setText("Enter visitor ID");
-
-        jLabel4.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel4.setText("Enter email");
 
         jLabel9.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel9.setText("Enter  phone number");
@@ -213,10 +226,6 @@ public class RegisterPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -252,10 +261,6 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,17 +300,8 @@ public class RegisterPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel2.setText("Enter name");
 
-        jTextField7.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField7FocusLost(evt);
-            }
-        });
-
         jLabel10.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel10.setText("Enter warden ID");
-
-        jLabel11.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel11.setText("Enter email");
+        jLabel10.setText("Enter email");
 
         jLabel12.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel12.setText("Enter  phone number");
@@ -349,13 +345,9 @@ public class RegisterPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(25, 25, 25)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -389,10 +381,6 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,31 +441,30 @@ public class RegisterPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1))
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(281, 281, 281))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,9 +484,9 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(23, 23, 23))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -515,18 +502,38 @@ public class RegisterPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                
+        try {
+            vID = jTextField2.getText();
+            vName = jTextField1.getText();
+            pID = jTextField11.getText();
+            relation = jTextField12.getText();
+            vPhone = jTextField5.getText();
+            vAdd = jTextField13.getText();
+            vPass = new String(jPasswordField1.getPassword());
+            vHint = jTextField4.getText();
+            String vQuery = "insert into visitor values(?,?,?,?,?,?,?,?)";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(vQuery);
+            st.setString(1, vID);
+            st.setString(2, pID);
+            st.setString(3, vName);
+            st.setString(4, "dheeraj");
+            st.setString(5, vHint);
+            st.setString(6, vPass);
+            st.setString(7, relation);
+            st.setString(8,vAdd);
+            st.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Registration Successful, log in again!");
                 this.dispose();
                 new LoginPage().setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid details");
+            Logger.getLogger(RegisterPage.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                                            
             
            
         
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7FocusLost
 
     private void jTextField11FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField11FocusLost
         // TODO add your handling code here:
@@ -545,10 +552,12 @@ public class RegisterPage extends javax.swing.JFrame {
         jButton1.setVisible(true);
         jPasswordField5.setVisible(true);
         
+        
+        jButton2.setEnabled(false);
+        
         jPanel1.setEnabled(false); 
         jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
-        jTextField3.setEnabled(false);
         jTextField4.setEnabled(false);
         jTextField5.setEnabled(false);
         jTextField11.setEnabled(false);
@@ -563,12 +572,14 @@ public class RegisterPage extends javax.swing.JFrame {
         jButton1.setVisible(false);
         jPasswordField5.setVisible(false);
         
+        jButton2.setEnabled(true);
+        jButton6.setEnabled(false);
+        
         jPanel1.setEnabled(true);
         jPanel2.setEnabled(false);         // TODO add your handling code here:
         
         jTextField1.setEnabled(true);
         jTextField2.setEnabled(true);
-        jTextField3.setEnabled(true);
         jTextField4.setEnabled(true);
         jTextField5.setEnabled(true);
         jTextField11.setEnabled(true);
@@ -579,7 +590,6 @@ public class RegisterPage extends javax.swing.JFrame {
         
             jTextField6.setEnabled(false);
             jTextField7.setEnabled(false);
-            jTextField8.setEnabled(false);
             jTextField9.setEnabled(false);
             jTextField10.setEnabled(false);
             jTextField14.setEnabled(false);
@@ -589,11 +599,11 @@ public class RegisterPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String pass = new String(jPasswordField5.getPassword());
-        if(pass.equals("manipal")){
+        if(pass.equals("manipal1234")){
+            jButton6.setEnabled(true);
             jPanel2.setEnabled(true);
             jTextField6.setEnabled(true);
             jTextField7.setEnabled(true);
-            jTextField8.setEnabled(true);
             jTextField9.setEnabled(true);
             jTextField10.setEnabled(true);
             jTextField14.setEnabled(true);
@@ -607,9 +617,33 @@ public class RegisterPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        try {
+            wName = jTextField6.getText();
+            wID = jTextField7.getText();
+            wPhone = jTextField9.getText();
+            wPass = new String(jPasswordField3.getPassword());
+            wHint = jTextField10.getText();
+            wBNum = jTextField14.getText();
+            
+            String wQuery = "insert into warden values(?,?,?,?,?,?,?)";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(wQuery);
+            st.setString(1, wID);
+            st.setString(2, "0");
+            st.setString(3, wName);
+            st.setString(4, wPass);
+            st.setString(5, wHint);
+            st.setString(6, wPhone);
+            st.setString(7, wBNum);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registration successful");
+            this.dispose();
+            new LoginPage().setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid details");
+            Logger.getLogger(RegisterPage.class.getName()).log(Level.SEVERE, null, ex);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    }                                        
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -656,7 +690,6 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -668,7 +701,6 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -688,12 +720,10 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
