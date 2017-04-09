@@ -8,13 +8,32 @@ package prisondb;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ayushmandey
  */
 public class RegisterPage extends javax.swing.JFrame {
 
+    //dheeraj DB variables
+    String wName;
+    String wID;
+    String wEmail;
+    String wPhone;
+    String wPass;
+    String wBNum;
+    String wHint;
+    String vName;
+    String vID;
+    String pID;
+    String relation;
+    String vPhone;
+    String vPass;
+    String vAdd;
+    String vHint;
     /**
      * Creates new form RegisterPage
      */
@@ -483,10 +502,34 @@ public class RegisterPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                
+        try {
+            vID = jTextField2.getText();
+            vName = jTextField1.getText();
+            pID = jTextField11.getText();
+            relation = jTextField12.getText();
+            vPhone = jTextField5.getText();
+            vAdd = jTextField13.getText();
+            vPass = new String(jPasswordField1.getPassword());
+            vHint = jTextField4.getText();
+            String vQuery = "insert into visitor values(?,?,?,?,?,?,?,?)";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(vQuery);
+            st.setString(1, vID);
+            st.setString(2, pID);
+            st.setString(3, vName);
+            st.setString(4, "dheeraj");
+            st.setString(5, vHint);
+            st.setString(6, vPass);
+            st.setString(7, relation);
+            st.setString(8,vAdd);
+            st.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Registration Successful, log in again!");
                 this.dispose();
                 new LoginPage().setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid details");
+            Logger.getLogger(RegisterPage.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                                            
             
            
         
@@ -574,9 +617,33 @@ public class RegisterPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        try {
+            wName = jTextField6.getText();
+            wID = jTextField7.getText();
+            wPhone = jTextField9.getText();
+            wPass = new String(jPasswordField3.getPassword());
+            wHint = jTextField10.getText();
+            wBNum = jTextField14.getText();
+            
+            String wQuery = "insert into warden values(?,?,?,?,?,?,?)";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(wQuery);
+            st.setString(1, wID);
+            st.setString(2, "0");
+            st.setString(3, wName);
+            st.setString(4, wPass);
+            st.setString(5, wHint);
+            st.setString(6, wPhone);
+            st.setString(7, wBNum);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registration successful");
+            this.dispose();
+            new LoginPage().setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid details");
+            Logger.getLogger(RegisterPage.class.getName()).log(Level.SEVERE, null, ex);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    }                                        
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

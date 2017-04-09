@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package prisondb;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ayushmandey
@@ -19,8 +21,25 @@ public class VisitorDashboard extends javax.swing.JFrame {
         jLabel1.setVisible(false);
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
-    }
 
+        getSQLData();
+
+    }
+    void getSQLData(){
+        try {
+            String query = "select inmate.name, bID, cID, release_date from inmate,visitor where inmate.pID = visitor.pID";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            jLabel5.setText(rs.getString(1));
+            jLabel9.setText(rs.getString(2));
+            jLabel11.setText(rs.getString(3));
+            jLabel10.setText(rs.getString(4));
+        } catch (SQLException ex) {
+            Logger.getLogger(VisitorDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,19 +5,50 @@
  */
 package prisondb;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.*;
+import java.util.Arrays;
 /**
  *
  * @author ayushmandey
  */
 public class WardenDashboard extends javax.swing.JFrame {
-
+    //dheeraj DB variables
+    String[] prList;
     /**
      * Creates new form WardenDashboard
      */
     public WardenDashboard() {
         initComponents();
+        //getSQLData();
+        prList = new String[20];
+        Arrays.fill(prList,null);
     }
-
+    void getSQLData(){
+        try {
+            String query1 = "select bID from warden where oID = ?";
+            PreparedStatement st1 = MySQLConnection.getConnection().prepareStatement(query1);
+            st1.setString(1, LoginPage.wUsername);
+            ResultSet rs1 = st1.executeQuery();
+            rs1.next();
+            String block = rs1.getString(1);
+            String query = "select name from inmate where bID = ?";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, block);
+            ResultSet rs = st.executeQuery();
+            int i =0;
+            while(rs.next()){
+                prList[i]=rs.getString(1);
+                i++;
+                System.out.println(prList[i]);
+            }
+            jList1.setListData(prList);
+        } catch (SQLException ex) {
+            Logger.getLogger(WardenDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
