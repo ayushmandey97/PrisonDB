@@ -27,6 +27,28 @@ public class RegisterPage extends javax.swing.JFrame {
         jButton1.setVisible(false);
         jPasswordField5.setVisible(false);
         
+        //disabling register warden elements
+            jTextField6.setEnabled(false);
+            jTextField7.setEnabled(false);
+            jTextField8.setEnabled(false);
+            jTextField9.setEnabled(false);
+            jTextField10.setEnabled(false);
+            jTextField14.setEnabled(false);
+            jPasswordField3.setEnabled(false);
+            jPasswordField4.setEnabled(false);
+            
+         //disabling register visitor elements
+         jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jTextField4.setEnabled(false);
+        jTextField5.setEnabled(false);
+        jTextField11.setEnabled(false);
+        jTextField12.setEnabled(false);
+        jTextField13.setEnabled(false);
+        jPasswordField1.setEnabled(false);
+        jPasswordField2.setEnabled(false);
+        
      
         }
     
@@ -65,9 +87,9 @@ public class RegisterPage extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -85,6 +107,7 @@ public class RegisterPage extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jPasswordField5 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -149,6 +172,15 @@ public class RegisterPage extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(51, 153, 255));
+        jButton2.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
+        jButton2.setText("Register");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -197,6 +229,9 @@ public class RegisterPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +276,8 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
 
         jLabel5.setFont(new java.awt.Font("American Typewriter", 1, 36)); // NOI18N
@@ -251,15 +287,6 @@ public class RegisterPage extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setBackground(new java.awt.Color(51, 153, 255));
-        jButton2.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jButton2.setText("Register");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -294,6 +321,15 @@ public class RegisterPage extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel20.setText("Enter block number");
+
+        jButton6.setBackground(new java.awt.Color(51, 153, 255));
+        jButton6.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
+        jButton6.setText("Register");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -338,6 +374,9 @@ public class RegisterPage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton6))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +413,8 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6))
         );
 
         jLabel16.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
@@ -390,7 +430,8 @@ public class RegisterPage extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("American Typewriter", 0, 24)); // NOI18N
-        jButton4.setText("Register Warden");
+        jButton4.setText("REGISTER WARDEN");
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -398,7 +439,8 @@ public class RegisterPage extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("American Typewriter", 0, 24)); // NOI18N
-        jButton5.setText("Register Visitor");
+        jButton5.setText("REGISTER VISITOR");
+        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -414,14 +456,12 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel16)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel16)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -431,7 +471,7 @@ public class RegisterPage extends javax.swing.JFrame {
                                         .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton1))
-                                    .addComponent(jButton5))
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -444,10 +484,10 @@ public class RegisterPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel5)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -457,10 +497,8 @@ public class RegisterPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jButton3)
                 .addGap(23, 23, 23))
         );
 
@@ -508,6 +546,16 @@ public class RegisterPage extends javax.swing.JFrame {
         jPasswordField5.setVisible(true);
         
         jPanel1.setEnabled(false); 
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jTextField4.setEnabled(false);
+        jTextField5.setEnabled(false);
+        jTextField11.setEnabled(false);
+        jTextField12.setEnabled(false);
+        jTextField13.setEnabled(false);
+        jPasswordField1.setEnabled(false);
+        jPasswordField2.setEnabled(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -517,18 +565,50 @@ public class RegisterPage extends javax.swing.JFrame {
         
         jPanel1.setEnabled(true);
         jPanel2.setEnabled(false);         // TODO add your handling code here:
+        
+        jTextField1.setEnabled(true);
+        jTextField2.setEnabled(true);
+        jTextField3.setEnabled(true);
+        jTextField4.setEnabled(true);
+        jTextField5.setEnabled(true);
+        jTextField11.setEnabled(true);
+        jTextField12.setEnabled(true);
+        jTextField13.setEnabled(true);
+        jPasswordField1.setEnabled(true);
+        jPasswordField2.setEnabled(true);
+        
+            jTextField6.setEnabled(false);
+            jTextField7.setEnabled(false);
+            jTextField8.setEnabled(false);
+            jTextField9.setEnabled(false);
+            jTextField10.setEnabled(false);
+            jTextField14.setEnabled(false);
+            jPasswordField3.setEnabled(false);
+            jPasswordField4.setEnabled(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String pass = new String(jPasswordField5.getPassword());
         if(pass.equals("manipal")){
             jPanel2.setEnabled(true);
+            jTextField6.setEnabled(true);
+            jTextField7.setEnabled(true);
+            jTextField8.setEnabled(true);
+            jTextField9.setEnabled(true);
+            jTextField10.setEnabled(true);
+            jTextField14.setEnabled(true);
+            jPasswordField3.setEnabled(true);
+            jPasswordField4.setEnabled(true);
         }
         else{
             JOptionPane.showMessageDialog(null, "Wrong master password, try again!");
         }
             // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     
     public static void main(String args[]) {
@@ -573,6 +653,7 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
