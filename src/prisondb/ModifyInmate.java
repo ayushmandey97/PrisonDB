@@ -166,7 +166,11 @@ public class ModifyInmate extends javax.swing.JFrame {
         jLabel15.setText("Release date");
 
         jLabel16.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel16.setText("Enter street");
+        jLabel16.setText("Enter address");
+
+        jTextField4.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
+
+        jTextField5.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel19.setText("Case type");
@@ -198,7 +202,10 @@ public class ModifyInmate extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel24.setText("Case description");
 
+        jTextField8.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
+
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
@@ -278,17 +285,14 @@ public class ModifyInmate extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jLabel15)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel11)
-                            .addComponent(jButton5)
-                            .addComponent(jLabel16)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel11)
+                        .addComponent(jButton5)
+                        .addComponent(jLabel16))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -334,7 +338,7 @@ public class ModifyInmate extends javax.swing.JFrame {
                 .addComponent(jButton7)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

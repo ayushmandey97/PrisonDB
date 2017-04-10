@@ -239,7 +239,7 @@ public class Visitations extends javax.swing.JFrame {
         String selected = jList1.getSelectedValue();
 
         try {
-            String query = "select v.name, i.pID, i.name, case_type from visitor v, inmate i where v.vID = ? ";
+            String query = "select v.name, v.pID, i.name, case_type from visitor v, inmate i where v.vID = ? ";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
             st.setString(1, selected);
             ResultSet rs = st.executeQuery();
@@ -247,8 +247,14 @@ public class Visitations extends javax.swing.JFrame {
             
             jLabel12.setText(rs.getString(1));
             jLabel6.setText(rs.getString(2));
-            jLabel7.setText(rs.getString(3));
-            jLabel8.setText(rs.getString(4));
+            
+            String query1 = "select name, case_type from inmate where pID = ? ";
+            PreparedStatement st1 = MySQLConnection.getConnection().prepareStatement(query1);
+            st1.setString(1, jLabel6.getText());
+            ResultSet rs1 = st1.executeQuery();
+            rs1.next();
+            jLabel7.setText(rs1.getString(1));
+            jLabel8.setText(rs1.getString(2));
             
         } catch (SQLException ex) {
             Logger.getLogger(Visitations.class.getName()).log(Level.SEVERE, null, ex);
