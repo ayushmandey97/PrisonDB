@@ -6,7 +6,9 @@
 package prisondb;
 
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ayushmandey
@@ -38,8 +40,6 @@ public class AddInmate extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -69,7 +69,7 @@ public class AddInmate extends javax.swing.JFrame {
         jLabel7.setText("Address");
 
         jLabel8.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel8.setText("Enter case ID");
+        jLabel8.setText("Enter block ID");
 
         jLabel9.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel9.setText("Enter case type");
@@ -104,8 +104,6 @@ public class AddInmate extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addComponent(jTextField8)
@@ -131,15 +129,11 @@ public class AddInmate extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))))
-                .addGap(29, 29, 29)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,8 +202,37 @@ public class AddInmate extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //**** ENTER QUERY HERE ******
+        try {
+            String name;
+            String entry_date;
+            String release_date;
+            String case_type;
+            String case_desc;
+            String cell;
+            String add;
+            name = jTextField2.getText();
+            entry_date = jTextField3.getText();
+            release_date = jTextField4.getText();
+            add = jTextField5.getText();
+            case_type = jTextField8.getText();
+            case_desc = jTextArea1.getText();
+            cell = jTextField9.getText();
+            String vQuery = "insert into inmate(name,release_date,entry_date,oID,bID,cID,case_type,case_desc,address) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(vQuery);
+            st.setString(1, name);
+            st.setString(2, release_date);
+            st.setString(3, entry_date);
+            st.setString(4, LoginPage.wUsername);
+            st.setString(5, "1"); //HAVE TO FIX THIS
+            st.setString(6, cell);
+            st.setString(7, case_type);
+            st.setString(8, case_desc);
+            st.setString(9, add);
+            st.executeUpdate();
         JOptionPane.showMessageDialog(null, "Inmate added to database!");        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(AddInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -266,8 +289,6 @@ public class AddInmate extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables

@@ -22,29 +22,32 @@ public class WardenDashboard extends javax.swing.JFrame {
      */
     public WardenDashboard() {
         initComponents();
-        //getSQLData();
-        prList = new String[20];
-        Arrays.fill(prList,null);
+        getSQLData();
     }
     void getSQLData(){
         try {
-            String query1 = "select bID from warden where oID = ?";
-            PreparedStatement st1 = MySQLConnection.getConnection().prepareStatement(query1);
-            st1.setString(1, LoginPage.wUsername);
-            ResultSet rs1 = st1.executeQuery();
-            rs1.next();
-            String block = rs1.getString(1);
-            String query = "select name from inmate where bID = ?";
+            String[] prList = new String[20];
+           
+            String query = "select name from inmate where bID in (select bID from warden where oID = ? )";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
-            st.setString(1, block);
+            st.setString(1, LoginPage.wUsername);
             ResultSet rs = st.executeQuery();
             int i =0;
             while(rs.next()){
                 prList[i]=rs.getString(1);
                 i++;
-                System.out.println(prList[i]);
+                //System.out.println(prList[i]);
             }
             jList1.setListData(prList);
+            
+            
+            String query1 = "select count(pID) from inmate where bID = (select bID from warden where oID = ?) ";
+            PreparedStatement st1 = MySQLConnection.getConnection().prepareStatement(query1);
+            st1.setString(1, LoginPage.wUsername);
+            ResultSet rs1 = st1.executeQuery();
+            rs1.next();
+            jLabel5.setText(rs1.getString(1));
+            
         } catch (SQLException ex) {
             Logger.getLogger(WardenDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -122,7 +125,6 @@ public class WardenDashboard extends javax.swing.JFrame {
         jLabel4.setText("Number of inmates in block is");
 
         jLabel5.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel5.setText("label");
 
         jLabel6.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel6.setText("Inmates");
@@ -133,9 +135,13 @@ public class WardenDashboard extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jButton1.setText("Get Cell ID");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel7.setText("label");
 
         jButton3.setText("Log Out");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +162,9 @@ public class WardenDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1))
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
@@ -175,29 +183,30 @@ public class WardenDashboard extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton3)
-                                .addGap(42, 42, 42))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel3))
+                                .addGap(42, 42, 42))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel1)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addGap(36, 36, 36)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,8 +229,8 @@ public class WardenDashboard extends javax.swing.JFrame {
                         .addContainerGap(39, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jButton1))
+                            .addComponent(jButton1)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18))))
@@ -254,6 +263,22 @@ public class WardenDashboard extends javax.swing.JFrame {
         this.dispose();
         new Visitations().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String selected = jList1.getSelectedValue();
+        try {
+            String query = "select cID from inmate where name = ?";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, selected);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            jLabel7.setText(rs.getString(1));
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(WardenDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

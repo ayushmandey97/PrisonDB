@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package prisondb;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +44,35 @@ public class ModifyInmate extends javax.swing.JFrame {
         jTextArea1.setVisible(false); 
     }
 
+    public void getSQLData(){
+        try {
+            String query = "select name, entry_date, release_date, address, case_type, case_desc from inmate where pID = ? ";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, jTextField1.getText());
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            String name = rs.getString(1);
+            jLabel8.setText(name);
+           
+            String entry_date = rs.getString(2);
+            jLabel10.setText(entry_date);
+            
+            
+            String release_date = rs.getString(3);
+            jLabel9.setText(release_date);
+         
+            String address = rs.getString(4);
+            jLabel11.setText(address);
+   
+            String case_type = rs.getString(5);
+            jLabel20.setText(case_type);
+
+            String case_desc = rs.getString(6);
+            jLabel22.setText(case_desc);
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,6 +137,11 @@ public class ModifyInmate extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jButton1.setText("Get details");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true), "Inmate Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("American Typewriter", 0, 36))); // NOI18N
 
@@ -430,10 +466,60 @@ public class ModifyInmate extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        //*****INSERT QUERY HERE****
+        if(jTextField4.isVisible()){
+        try {
+            //jLabel15.setVisible(true);
+            //jTextField4.setVisible(true);// TODO add your handling code here:
+            String uRdate = "update inmate set release_date = ? where pID = ? ";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(uRdate);
+            st.setString(1, jTextField4.getText());
+            st.setString(2, jTextField1.getText());
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, "Inmate details successfully modified!");
-        this.dispose();
-        new WardenDashboard().setVisible(true);        // TODO add your handling code here:
+        }
+        if(jTextField5.isVisible()){
+            try {
+            //jLabel15.setVisible(true);
+            //jTextField4.setVisible(true);// TODO add your handling code here:
+            String uRdate = "update inmate set address = ? where pID = ?";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(uRdate);
+            st.setString(1, jTextField5.getText());
+            st.setString(2, jTextField1.getText());
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(jTextField8.isVisible()){
+            try {
+            //jLabel23.setVisible(true);
+            //jTextField8.setVisible(true);
+            String query = "update inmate set case_type = ? where pID = ? ";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, jTextField8.getText());
+            st.setString(2, jTextField1.getText());
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(jTextArea1.isVisible()){
+         try {
+            //jLabel24.setVisible(true);
+            //jTextArea1.setVisible(true);        // TODO add your handling code here:
+            String query = "update inmate set case_desc = ? where pID =? ";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, jTextArea1.getText());
+            st.setString(2, jTextField1.getText());
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModifyInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        getSQLData();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -450,6 +536,11 @@ public class ModifyInmate extends javax.swing.JFrame {
         jLabel24.setVisible(true);
         jTextArea1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        getSQLData();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
