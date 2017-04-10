@@ -107,6 +107,11 @@ public class LoginPage extends javax.swing.JFrame {
         });
 
         jButton6.setText("Forgot Password?");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
 
@@ -161,6 +166,11 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel5.setText("Enter password");
 
         jButton7.setText("Login");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Forgot Password?");
 
@@ -346,16 +356,17 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
             wUsername = jTextField1.getText();
-            String showHint = "select hint from warden where oID = ?";
+            String showHint = "select hint from warden where oID = ? ";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(showHint);
             st.setString(1, wUsername);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if(rs.next())
                 hint=rs.getString(1);
-            }
-            else{
+                
+            
+            else
                 hint = "Invalid username/password";
-            }
+            
             JOptionPane.showMessageDialog(null, hint);
         } catch (SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -384,7 +395,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
             vUsername = jTextField2.getText();
-            String query = "select pass from visitor where vID = ?";
+            String query = "select pass from visitor where vID = ? ";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
             st.setString(1, vUsername);
             ResultSet rs = st.executeQuery();
