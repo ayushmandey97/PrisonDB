@@ -223,7 +223,7 @@ public class AddInmate extends javax.swing.JFrame {
             st.setString(2, release_date);
             st.setString(3, entry_date);
             st.setString(4, LoginPage.wUsername);
-            st.setString(5, "1"); //HAVE TO FIX THIS
+            st.setString(5, jTextField1.getText()); 
             st.setString(6, cell);
             st.setString(7, case_type);
             st.setString(8, case_desc);

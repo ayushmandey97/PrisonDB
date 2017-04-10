@@ -22,7 +22,6 @@ public class ViewInmate extends javax.swing.JFrame {
      */
     public ViewInmate() {
         initComponents();
-        jPanel1.setVisible(false);
         jButton4.setVisible(false);
     }
 
@@ -86,16 +85,12 @@ public class ViewInmate extends javax.swing.JFrame {
         jLabel7.setText("Address");
 
         jLabel8.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel8.setText("label");
 
         jLabel9.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel9.setText("label");
 
         jLabel10.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel10.setText("label");
 
         jLabel11.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel11.setText("label");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true), "Inmate Case", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("American Typewriter", 0, 24))); // NOI18N
 
@@ -103,7 +98,6 @@ public class ViewInmate extends javax.swing.JFrame {
         jLabel4.setText("Case type");
 
         jLabel15.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel15.setText("label");
 
         jLabel16.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel16.setText("Description");
@@ -282,6 +276,7 @@ public class ViewInmate extends javax.swing.JFrame {
                         PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
                         st.setString(1, jTextField1.getText());
                         st.executeUpdate();
+                        
                      
                         JOptionPane.showMessageDialog(null, "Records successfully deleted!");
                         this.dispose();
@@ -302,7 +297,6 @@ public class ViewInmate extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-            jPanel1.setVisible(true);
             jButton4.setVisible(true);
        try{   
             String query = "select name, entry_date, release_date, address, case_type, case_desc from inmate where pID = ? ";

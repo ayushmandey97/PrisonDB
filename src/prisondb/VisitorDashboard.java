@@ -106,10 +106,9 @@ public class VisitorDashboard extends javax.swing.JFrame {
         jLabel4.setText("Inmate name: ");
 
         jLabel5.setFont(new java.awt.Font("American Typewriter", 0, 21)); // NOI18N
-        jLabel5.setText("label");
 
         jLabel6.setFont(new java.awt.Font("American Typewriter", 0, 21)); // NOI18N
-        jLabel6.setText("Block number");
+        jLabel6.setText("Block ID");
 
         jLabel7.setFont(new java.awt.Font("American Typewriter", 0, 21)); // NOI18N
         jLabel7.setText("Cell number");
@@ -118,13 +117,10 @@ public class VisitorDashboard extends javax.swing.JFrame {
         jLabel8.setText("Release date");
 
         jLabel9.setFont(new java.awt.Font("American Typewriter", 0, 21)); // NOI18N
-        jLabel9.setText("label");
 
         jLabel10.setFont(new java.awt.Font("American Typewriter", 0, 21)); // NOI18N
-        jLabel10.setText("label");
 
         jLabel11.setFont(new java.awt.Font("American Typewriter", 0, 21)); // NOI18N
-        jLabel11.setText("label");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

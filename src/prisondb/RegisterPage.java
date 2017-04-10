@@ -144,7 +144,7 @@ public class RegisterPage extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel3.setText("Enter visitor ID");
+        jLabel3.setText("Enter username");
 
         jLabel9.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel9.setText("Enter  phone number");
@@ -301,7 +301,7 @@ public class RegisterPage extends javax.swing.JFrame {
         jLabel2.setText("Enter name");
 
         jLabel10.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel10.setText("Enter email");
+        jLabel10.setText("Enter username");
 
         jLabel12.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel12.setText("Enter  phone number");

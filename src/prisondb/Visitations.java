@@ -124,16 +124,12 @@ public class Visitations extends javax.swing.JFrame {
         jLabel5.setText("Case type");
 
         jLabel12.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel12.setText("label");
 
         jLabel6.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel6.setText("label");
 
         jLabel7.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel7.setText("label");
 
         jLabel8.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel8.setText("label");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
