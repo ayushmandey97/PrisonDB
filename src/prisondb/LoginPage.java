@@ -370,12 +370,13 @@ public class LoginPage extends javax.swing.JFrame {
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(showHint);
             st.setString(1, wUsername);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if(rs.next())
                 hint=rs.getString(1);
-            }
-            else{
+                
+            
+            else
                 hint = "Invalid username/password";
-            }
+            
             JOptionPane.showMessageDialog(null, hint);
         } catch (SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);

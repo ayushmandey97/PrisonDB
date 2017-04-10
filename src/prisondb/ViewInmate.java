@@ -321,6 +321,7 @@ public class ViewInmate extends javax.swing.JFrame {
             String release_date = rs.getString(3);
             jLabel9.setText(release_date);
          
+
             String address = rs.getString(4);
             jLabel11.setText(address);
    
