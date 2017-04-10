@@ -27,8 +27,9 @@ public class VisitorDashboard extends javax.swing.JFrame {
     }
     void getSQLData(){
         try {
-            String query = "select inmate.name, bID, cID, release_date from inmate,visitor where inmate.pID = visitor.pID";
+            String query = "select inmate.name, bID, cID, release_date from inmate,visitor where vID = ? and inmate.pID = visitor.pID";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, LoginPage.vUsername);
             ResultSet rs = st.executeQuery();
             rs.next();
             jLabel5.setText(rs.getString(1));

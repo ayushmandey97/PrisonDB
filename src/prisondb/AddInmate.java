@@ -6,7 +6,9 @@
 package prisondb;
 
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ayushmandey
@@ -200,8 +202,37 @@ public class AddInmate extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //**** ENTER QUERY HERE ******
+        try {
+            String name;
+            String entry_date;
+            String release_date;
+            String case_type;
+            String case_desc;
+            String cell;
+            String add;
+            name = jTextField2.getText();
+            entry_date = jTextField3.getText();
+            release_date = jTextField4.getText();
+            add = jTextField5.getText();
+            case_type = jTextField8.getText();
+            case_desc = jTextArea1.getText();
+            cell = jTextField9.getText();
+            String vQuery = "insert into inmate(name,release_date,entry_date,oID,bID,cID,case_type,case_desc,address) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(vQuery);
+            st.setString(1, name);
+            st.setString(2, release_date);
+            st.setString(3, entry_date);
+            st.setString(4, LoginPage.wUsername);
+            st.setString(5, "1"); //HAVE TO FIX THIS
+            st.setString(6, cell);
+            st.setString(7, case_type);
+            st.setString(8, case_desc);
+            st.setString(9, add);
+            st.executeUpdate();
         JOptionPane.showMessageDialog(null, "Inmate added to database!");        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(AddInmate.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -305,7 +305,7 @@ public class ViewInmate extends javax.swing.JFrame {
             jPanel1.setVisible(true);
             jButton4.setVisible(true);
        try{   
-            String query = "select name, entry_date, release_date, case_type, case_desc from inmate where pID = ? ";
+            String query = "select name, entry_date, release_date, address, case_type, case_desc from inmate where pID = ? ";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
             st.setString(1, jTextField1.getText());
             ResultSet rs = st.executeQuery();
@@ -321,13 +321,14 @@ public class ViewInmate extends javax.swing.JFrame {
             String release_date = rs.getString(3);
             jLabel9.setText(release_date);
          
-            //String address = rs.getString(4);
-            //jLabel8.setText(address);
+
+            String address = rs.getString(4);
+            jLabel11.setText(address);
    
-            String case_type = rs.getString(4);
+            String case_type = rs.getString(5);
             jLabel15.setText(case_type);
 
-            String case_desc = rs.getString(5);
+            String case_desc = rs.getString(6);
             jTextArea1.setText(case_desc);
             jTextArea1.setEditable(false);
   

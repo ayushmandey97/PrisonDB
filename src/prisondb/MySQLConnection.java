@@ -19,7 +19,7 @@ public class MySQLConnection {
         if (con != null) 
         return con;
         // get database, username, password from settings file
-        return getConnection("prison", "root", "ayushman.dey97");
+        return getConnection("prison", "root", "Dheeraj1234!");
     }
 
     private static Connection getConnection(String db_name,String user_name,String password)
