@@ -22,29 +22,32 @@ public class WardenDashboard extends javax.swing.JFrame {
      */
     public WardenDashboard() {
         initComponents();
-        //getSQLData();
-        prList = new String[20];
-        Arrays.fill(prList,null);
+        getSQLData();
     }
     void getSQLData(){
         try {
-            String query1 = "select bID from warden where oID = ?";
-            PreparedStatement st1 = MySQLConnection.getConnection().prepareStatement(query1);
-            st1.setString(1, LoginPage.wUsername);
-            ResultSet rs1 = st1.executeQuery();
-            rs1.next();
-            String block = rs1.getString(1);
-            String query = "select name from inmate where bID = ?";
+            String[] prList = new String[20];
+           
+            String query = "select name from inmate where bID in (select bID from warden where oID = ? )";
             PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
-            st.setString(1, block);
+            st.setString(1, LoginPage.wUsername);
             ResultSet rs = st.executeQuery();
             int i =0;
             while(rs.next()){
                 prList[i]=rs.getString(1);
                 i++;
-                System.out.println(prList[i]);
+                //System.out.println(prList[i]);
             }
             jList1.setListData(prList);
+            
+            
+            String query1 = "select count(pID) from inmate where bID = (select bID from warden where oID = ?) ";
+            PreparedStatement st1 = MySQLConnection.getConnection().prepareStatement(query1);
+            st1.setString(1, LoginPage.wUsername);
+            ResultSet rs1 = st1.executeQuery();
+            rs1.next();
+            jLabel5.setText(rs1.getString(1));
+            
         } catch (SQLException ex) {
             Logger.getLogger(WardenDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -122,7 +125,6 @@ public class WardenDashboard extends javax.swing.JFrame {
         jLabel4.setText("Number of inmates in block is");
 
         jLabel5.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel5.setText("label");
 
         jLabel6.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jLabel6.setText("Inmates");
@@ -133,9 +135,13 @@ public class WardenDashboard extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
         jButton1.setText("Get Cell ID");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("American Typewriter", 0, 18)); // NOI18N
-        jLabel7.setText("label");
 
         jButton3.setText("Log Out");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -257,6 +263,22 @@ public class WardenDashboard extends javax.swing.JFrame {
         this.dispose();
         new Visitations().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String selected = jList1.getSelectedValue();
+        try {
+            String query = "select cID from inmate where name = ?";
+            PreparedStatement st = MySQLConnection.getConnection().prepareStatement(query);
+            st.setString(1, selected);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            jLabel7.setText(rs.getString(1));
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(WardenDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
