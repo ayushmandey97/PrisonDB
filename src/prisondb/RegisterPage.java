@@ -28,7 +28,7 @@ public class RegisterPage extends javax.swing.JFrame {
     String wHint;
     String vName;
     String vID;
-    String pID;
+    static String pID;
     String relation;
     String vPhone;
     String vPass;
