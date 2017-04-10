@@ -24,10 +24,7 @@ DROP TABLE IF EXISTS `block`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `block` (
   `bID` int(11) NOT NULL,
-  `bName` varchar(20) DEFAULT NULL,
-  `nInmate` int(11) DEFAULT NULL,
   `oID` varchar(20) DEFAULT NULL,
-  `gender` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`bID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +35,7 @@ CREATE TABLE `block` (
 
 LOCK TABLES `block` WRITE;
 /*!40000 ALTER TABLE `block` DISABLE KEYS */;
-INSERT INTO `block` VALUES (1,'Block A',12,'dheeraj',NULL),(2,'Block B',NULL,'akshay_kc',NULL);
+INSERT INTO `block` VALUES (1,'dheeraj'),(2,'akshay_kc');
 /*!40000 ALTER TABLE `block` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,18 +96,18 @@ DROP TABLE IF EXISTS `inmate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `inmate` (
-  `pID` int(11) NOT NULL,
+  `pID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `release_date` varchar(20) DEFAULT NULL,
   `entry_date` varchar(20) DEFAULT NULL,
-  `gender` varchar(1) DEFAULT NULL,
   `oID` varchar(20) DEFAULT NULL,
   `bID` int(11) DEFAULT NULL,
   `cID` varchar(10) DEFAULT NULL,
   `case_type` varchar(50) DEFAULT NULL,
   `case_desc` varchar(200) DEFAULT NULL,
+  `Address` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`pID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +116,7 @@ CREATE TABLE `inmate` (
 
 LOCK TABLES `inmate` WRITE;
 /*!40000 ALTER TABLE `inmate` DISABLE KEYS */;
-INSERT INTO `inmate` VALUES (1,'Aditya Raju','11/04/2017','9/04/2017','M','dheeraj',2,'A1',NULL,NULL);
+INSERT INTO `inmate` VALUES (1,'Aditya Raju','12/04/2017','9/04/2017','dheeraj',2,'A1','piracy','Pirated iPhone apps','Mumbai'),(4,'Atharva','11/4/17','10/4/17','akshay_kc',2,'A2','Murder','muredered Aditya Raju','9th block');
 /*!40000 ALTER TABLE `inmate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +153,6 @@ DROP TABLE IF EXISTS `visitation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `visitation` (
   `vID` varchar(20) DEFAULT NULL,
-  `vDate` varchar(20) DEFAULT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,6 +163,7 @@ CREATE TABLE `visitation` (
 
 LOCK TABLES `visitation` WRITE;
 /*!40000 ALTER TABLE `visitation` DISABLE KEYS */;
+INSERT INTO `visitation` VALUES ('raghu',1),('tanmay',0);
 /*!40000 ALTER TABLE `visitation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +192,7 @@ CREATE TABLE `visitor` (
 
 LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
-INSERT INTO `visitor` VALUES ('ayushman',NULL,'Ayushman Dey',NULL,'dey3','deydeydey',NULL,NULL),('raghu',1,'Raghu Tiwari','dheeraj','roadies','raghu123','friend','MIT Manipal');
+INSERT INTO `visitor` VALUES ('raghu',1,'Raghu Tiwari','dheeraj','roadies','raghu123','friend','MIT Manipal'),('ayushman',3,'Ayushman Dey','akshay_kc','ayushman','ayushman','Friend','Manipal'),('tanmay',1,'Tanmay','dheeraj','fuck nitish','shraddha','sugar daddy','Manas');
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,7 +220,7 @@ CREATE TABLE `warden` (
 
 LOCK TABLES `warden` WRITE;
 /*!40000 ALTER TABLE `warden` DISABLE KEYS */;
-INSERT INTO `warden` VALUES ('dheeraj',3,'Dheeraj Lalwani','lalwani','lalwani',NULL,NULL),('akshay_kc',0,'Akshay KC','akshay','Did I ask you?',9876543210,2);
+INSERT INTO `warden` VALUES ('dheeraj',3,'Dheeraj Lalwani','lalwani','lalwani',NULL,NULL),('akshay_kc',0,'Akshay KC','akshay','Did I ask you?',9876543210,2),('reenasingh',0,'Reena Singh','reena','lagori',9876543217,3);
 /*!40000 ALTER TABLE `warden` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -236,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-09 23:39:34
+-- Dump completed on 2017-04-10 12:40:12
